@@ -225,7 +225,7 @@ class Program
   Here are the key differences between an interface and an abstract class:
 </p>
 
-| Term  | Different from a regular class |
+| Term  | Different |
 | ------------- | ------------- |
 | **Implementation** | **Abstract Class**: Can contain both abstract and non-abstract (concrete) members. It can provide partial implementation of methods. <br> **Interface**: Contains only method signatures, properties, events, or indexers, without any implementation.
 | **Inheritance** | **Abstract Class:** Supports single inheritance. A class can inherit from only one abstract class. <br> **Interface:** Supports multiple inheritance. A class can implement multiple interfaces.
@@ -297,19 +297,310 @@ class Program
 </details>
 
 <details>
-<summary>Що дає ключове слово «virtual»? Які члени класу можуть бути позначені цим модифікатором?</summary>
+<summary>What does the keyword "virtual" provide? Which class members can be marked with this modifier?</summary>
+<p>The virtual keyword in C# is used to define a method, property, or indexer in a base class that can be overridden in derived classes. It allows derived classes to provide a specific implementation for that member, effectively enabling polymorphic behavior.</p>
+
+<p>Here's what virtual provides:</p>
+
+| Term  | Description |
+| ------------- | ------------- |
+| Method Overriding | It allows a method in a base class to be overridden by a method with the same signature in a derived class.
+| Polymorphism | It enables polymorphic behavior, meaning that the appropriate method implementation is called based on the actual type of the object at runtime.
+
+<p>The class members that can be marked with the virtual modifier are:</p>
+
+* Methods
+* Properties (get and/or set accessors)
+* Indexers (get and/or set accessors)
+
+<p>Fields cannot be marked as virtual.</p>
+
+<p>Here's an example demonstrating the use of the virtual keyword with methods:</p>
+
+```cs
+using System;
+
+public class Animal
+{
+    // Virtual method
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("Animal makes a sound.");
+    }
+}
+
+public class Dog : Animal
+{
+    // Override the virtual method
+    public override void MakeSound()
+    {
+        Console.WriteLine("Dog barks.");
+    }
+}
+
+public class Cat : Animal
+{
+    // Override the virtual method
+    public override void MakeSound()
+    {
+        Console.WriteLine("Cat meows.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Animal animal1 = new Dog();
+        Animal animal2 = new Cat();
+
+        animal1.MakeSound(); // Output: Dog barks.
+        animal2.MakeSound(); // Output: Cat meows.
+    }
+}
+```
+<p>In this example, the MakeSound() method in the Animal class is marked as virtual, allowing derived classes Dog and Cat to override it with their own implementations. The actual method called depends on the type of object at runtime, demonstrating polymorphism.</p>
+
 </details>
 
 <details>
-<summary>Яка різниця між перевантаженням методу та перевизначенням методу?</summary>
+<summary>What is the difference between method overloading and method overriding?</summary>
+
+Method overloading and method overriding are both mechanisms used in object-oriented programming, but they serve different purposes and are used in different contexts.
+
+**Method Overloading:**
+
+Method overloading involves defining multiple methods with the same name but with different parameters within the same class. These methods can have different parameter types, different numbers of parameters, or a different order of parameters. The compiler differentiates between these methods based on their method signatures.
+
+Here's an example of method overloading:
+
+```cs
+public class Calculator
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    public double Add(double a, double b)
+    {
+        return a + b;
+    }
+
+    public int Add(int a, int b, int c)
+    {
+        return a + b + c;
+    }
+}
+
+```
+n this example, the `Add` method is overloaded three times with different parameter types and numbers.
+
+**Method Overriding:**
+
+Method overriding, on the other hand, occurs when a method in a subclass has the same name, return type, and parameters as a method in its superclass. The purpose of method overriding is to provide a specific implementation of a method in a subclass that overrides the implementation in the superclass. It is used in inheritance to achieve polymorphic behavior.
+
+Here's an example of method overriding:
+
+```cs
+public class Animal
+{
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("Animal makes a sound.");
+    }
+}
+
+public class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Dog barks.");
+    }
+}
+
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Cat meows.");
+    }
+}
+
+```
+
+In this example, both `Dog` and `Cat` classes override the `MakeSound` method defined in the `Animal` class.
+
+**Key Differences:**
+
+1.  **Purpose**:
+    
+    -   Method Overloading: Provides multiple methods with the same name but different signatures within the same class for convenience and flexibility.
+    -   Method Overriding: Provides a way for a subclass to provide a specific implementation of a method defined in its superclass.
+2.  **Inheritance**:
+    
+    -   Method Overloading: Not related to inheritance. Methods are defined within the same class.
+    -   Method Overriding: Specifically used in inheritance. The overridden method belongs to a superclass, and the overriding method belongs to a subclass.
+3.  **Usage**:
+    
+    -   Method Overloading: Used to create methods that perform similar tasks but operate on different types or numbers of parameters.
+    -   Method Overriding: Used to customize or extend the behavior of inherited methods in subclasse
+
 </details>
 
 <details>
-<summary>Що таке upcast і downcast?</summary>
+<summary>What are upcast and downcast?</summary>
+
+**Upcasting:**
+
+Upcasting is the process of casting a reference of a derived class to one of its base classes. It's essentially moving up the inheritance hierarchy. When you upcast, you are treating an object of a derived class as an object of its base class.
+
+Here's an example:
+```cs
+class Animal { }
+class Dog : Animal { }
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Dog myDog = new Dog();
+        Animal animal = myDog; // Upcasting
+        
+        // Now 'animal' is treated as an Animal, even though it's actually a Dog
+    }
+}
+
+```
+
+In this example, `myDog` is a `Dog` object, but it's assigned to a variable of type `Animal`. This is upcasting because `Dog` inherits from `Animal`, so it's implicitly treated as an `Animal`.
+
+**Downcasting:**
+
+Downcasting is the opposite process, where you cast a reference of a base class to one of its derived classes. It's moving down the inheritance hierarchy. Downcasting requires explicit casting and might throw an exception at runtime if the object being cast isn't actually an instance of the derived class.
+
+Here's an example:
+
+```cs
+class Animal { }
+class Dog : Animal { }
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Animal animal = new Dog();
+        Dog myDog = (Dog)animal; // Downcasting
+        
+        // Now 'myDog' is treated as a Dog
+    }
+}
+```
+
+In this example, `animal` is an `Animal` object, but it's actually referencing a `Dog` object. We explicitly cast `animal` to `Dog`, indicating that we're treating it as a `Dog`.
+
+It's important to note that downcasting can fail at runtime if the object being cast isn't actually an instance of the derived class. To avoid exceptions, you can use the `as` keyword:
+
+```cs
+Dog myDog = animal as Dog;
+if (myDog != null)
+{
+    // Downcasting successful
+}
+else
+{
+    // Downcasting failed
+}
+
+```
+
+This way, if `animal` isn't a `Dog`, `myDog` will be `null` rather than throwing an exception.
+
 </details>
 
 <details>
-<summary>Що таке події та делегати? Яка основна різниця між ними? Як їх використовувати для реалізації зворотного виклику в C#?</summary>
+<summary>What are events and delegates? What is the main difference between them? How can they be used to implement callbacks in C#?</summary>
+
+**Events and Delegates in C#**
+
+**Delegates:**
+
+Delegates in C# are similar to function pointers in C or C++. They are reference types that hold references to methods with a specific signature. Delegates allow methods to be passed as parameters, stored in collections, and invoked dynamically.
+
+Here's how a delegate is declared:
+
+```cs
+public delegate void MyDelegate(string message);
+```
+
+Delegates are especially useful for implementing callbacks because they allow you to define a contract for a method without needing to know the concrete implementation.
+
+**Events:**
+
+Events provide a way for objects to notify other objects when something of interest happens. They are based on the observer design pattern. An event is a special type of delegate that can only be invoked from within the class that declares it.
+
+Here's how an event is declared:
+
+```cs
+public class Publisher
+{
+    public event MyDelegate SomeEvent;
+    
+    public void RaiseEvent(string message)
+    {
+        SomeEvent?.Invoke(message);
+    }
+}
+```
+
+**Difference between Events and Delegates:**
+
+The main difference between events and delegates is that events encapsulate delegates. While you can assign a delegate directly, you can't directly invoke an event outside the class where it's declared. Events provide more control over how delegates are used and who can invoke them.
+
+**Using Delegates and Events to Implement Callbacks:**
+
+Callbacks in C# can be implemented using delegates and events. Here's a simple example:
+
+```cs
+using System;
+
+public delegate void MyCallback(string message);
+
+public class Publisher
+{
+    public event MyCallback SomeEvent;
+
+    public void RaiseEvent(string message)
+    {
+        SomeEvent?.Invoke(message);
+    }
+}
+
+public class Subscriber
+{
+    public void OnEventCallback(string message)
+    {
+        Console.WriteLine($"Subscriber received message: {message}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Publisher publisher = new Publisher();
+        Subscriber subscriber = new Subscriber();
+
+        // Subscribe to the event
+        publisher.SomeEvent += subscriber.OnEventCallback;
+
+        // Raise the event
+        publisher.RaiseEvent("Hello from publisher!");
+    }
+}
+```
+In this example, `Publisher` declares an event `SomeEvent` of type `MyCallback`, and `Subscriber` defines a method `OnEventCallback` that matches the signature of `MyCallback`. When `SomeEvent` is raised, the `OnEventCallback` method of `Subscriber` is invoked. This allows for the implementation of a callback mechanism.
+
 </details>
 
 ### *Основні концепції C#*
