@@ -225,22 +225,75 @@ class Program
   Here are the key differences between an interface and an abstract class:
 </p>
 
-**Implementation:**
-Abstract Class: Can contain both abstract and non-abstract (concrete) members. It can provide partial implementation of methods.
-Interface: Contains only method signatures, properties, events, or indexers, without any implementation.
-Inheritance:
-Abstract Class: Supports single inheritance. A class can inherit from only one abstract class.
-Interface: Supports multiple inheritance. A class can implement multiple interfaces.
-Members:
-Abstract Class: Can have fields, constructors, destructors, and defined methods.
-Interface: Can only have method signatures, properties, events, or indexers. No fields, constructors, or destructors are allowed.
-Accessibility:
-Abstract Class: Can have access modifiers (public, private, protected, etc.) for its members.
-Interface: All members are implicitly public and cannot have access modifiers (except for explicit interface implementations).
-Usage:
-Abstract Class: Used when a common base implementation is needed among derived classes or when some methods should have a default implementation.
-Interface: Used when you want to enforce a contract for implementing classes without providing any default implementation.
-  
+| Term  | Different from a regular class |
+| ------------- | ------------- |
+| **Implementation** | **Abstract Class**: Can contain both abstract and non-abstract (concrete) members. It can provide partial implementation of methods. <br> **Interface**: Contains only method signatures, properties, events, or indexers, without any implementation.
+| **Inheritance** | **Abstract Class:** Supports single inheritance. A class can inherit from only one abstract class. <br> **Interface:** Supports multiple inheritance. A class can implement multiple interfaces.
+| **Members** | **Abstract Class:** Can have fields, constructors, destructors, and defined methods. **Interface:** Can only have method signatures, properties, events, or indexers. No fields, constructors, or destructors are allowed.
+| **Accessibility** | **Abstract Class:** Can have access modifiers (public, private, protected, etc.) for its members. <br> **Interface:** All members are implicitly public and cannot have access modifiers (except for explicit interface implementations).
+| **Usage** | **Abstract Class:** Used when a common base implementation is needed among derived classes or when some methods should have a default implementation. <br> **Interface:** Used when you want to enforce a contract for implementing classes without providing any default implementation.
+
+<p>Here's an example illustrating these differences:</p>
+
+```cs
+using System;
+
+// Abstract class
+public abstract class Animal
+{
+    // Abstract method
+    public abstract void MakeSound();
+
+    // Concrete method
+    public void Eat()
+    {
+        Console.WriteLine("Animal is eating.");
+    }
+}
+
+// Interface
+public interface IJumpable
+{
+    // Method signature
+    void Jump();
+}
+
+// Concrete class implementing an interface
+public class Dog : Animal, IJumpable
+{
+    // Implementation of abstract method from abstract class
+    public override void MakeSound()
+    {
+        Console.WriteLine("Dog barks.");
+    }
+
+    // Implementation of interface method
+    public void Jump()
+    {
+        Console.WriteLine("Dog jumps.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Abstract class can't be instantiated
+        // Animal animal = new Animal(); // This will cause an error
+
+        // Abstract class instance
+        Dog dog = new Dog();
+        dog.MakeSound(); // Output: Dog barks.
+        dog.Eat(); // Output: Animal is eating.
+
+        // Interface instance
+        dog.Jump(); // Output: Dog jumps.
+    }
+}
+
+```
+<p>In this example, Animal is an abstract class containing both abstract and concrete members, while IJumpable is an interface containing only method signatures. Dog class inherits from the abstract class Animal and implements the interface IJumpable.</p>
+
 </details>
 
 <details>
@@ -260,6 +313,11 @@ Interface: Used when you want to enforce a contract for implementing classes wit
 </details>
 
 ### *Основні концепції C#*
+### *Обробка винятків та управління помилками*
+### *Структура коду та синтаксис*
+### *Принципи та шаблони проєктування програмного забезпечення*
+### *Тестування*
+### *Інше*
 
 ## **Middle** 👱
 ## **Senior** 🧔
