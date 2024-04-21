@@ -4,4 +4,4 @@
 ## Trainee/Junior 👼
 
 ### OOP concepts
-#### What are the basic principles of OOP? How are they implemented in C#?
+#### 1. What are the basic principles of OOP? How are they implemented in C#?
