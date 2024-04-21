@@ -1,12 +1,27 @@
 # Interviewer's questions about C#, ASP.NET, Data Bases concept and DevOps
 
+| Term  | Description |
+| ------------- | ------------- |
+| None | Has no or little understanding
+| Basic | Has an idea of the subject and its parts. Can explain. Has experience of use
+| Good | Can name examples of use in different contexts. Is guided by best-practices and specifications.
+| Advanced | Systematically applies best-practices, design patterns and tool specifications for solving complex issues
+| Outstanding | Takes into account technology limitations and its weaknesses. Successfully solves non-standard tasks. Master of debugging, optimization and style.
+
 ## **Trainee/Junior** 👼
 
 ### *OOP concepts*
 
 <details>
-<summary>What are the basic principles of OOP? How are they implemented in C#?</summary>
+<summary>What are the basic principles of OOP? How are they implemented in C#?</summary> 
 <br>
+
+- [ ] 1
+- [ ] 2
+- [ ] 3
+- [ ] 4
+- [ ] 5
+  
 <ul>
   <li>Encapsulation: Bundling data and methods that operate on the data into a single unit (class).</li>
   <li>Inheritance: Allowing a class (subclass) to inherit properties and methods from another class (superclass).</li>
@@ -147,6 +162,11 @@ class Program
 }
 
 ```
-These examples demonstrate encapsulation by using private fields and properties, inheritance by creating subclasses that inherit from a base class, and polymorphism by overriding methods in subclasses and using them interchangeably with base class references.
+<p>These examples demonstrate encapsulation by using private fields and properties, inheritance by creating subclasses that inherit from a base class, and polymorphism by overriding methods in subclasses and using them interchangeably with base class references.</p>
 
+</details>
+
+<details>
+<summary>What is an abstract class? And how is it different from a regular class?</summary>
+<p>An abstract class in C# is a class that cannot be instantiated directly. It's designed to be a blueprint for other classes, serving as a base for other classes to inherit from. Abstract classes may contain abstract methods, which are methods without a body, meant to be implemented by derived classes.</p>
 </details>
