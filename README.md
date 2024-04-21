@@ -1,7 +1,7 @@
-# Interview Questions
+# **Interview Questions**
 #### Questions from the interviewer on the ASP.Net
 
-## Trainee/Junior 👼
+## **Trainee/Junior** 👼
 
-### OOP concepts
+### *OOP concepts*
 #### 1. What are the basic principles of OOP? How are they implemented in C#?
