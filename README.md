@@ -170,7 +170,96 @@ class Program
   | Instantiation | Abstract classes cannot be instantiated directly, meaning you cannot create objects of an abstract class. Regular classes can be instantiated, allowing you to create objects directly. 
   | Abstract Methods | Abstract classes can have abstract methods, which are methods without implementation. These methods must be implemented by any non-abstract subclass. Regular classes may or may not have abstract methods, but if they do, they must be marked as abstract and the class itself must be marked as abstract. 
   | Inheritance | Abstract classes are used as base classes from which other classes can inherit. Regular classes can also be used as base classes, but they can also be instantiated directly without needing to be inherited.
+
+
+<h4>Here's an example illustrating the differences:</h4>
+
+```cs
+using System;
+
+// Abstract class
+public abstract class Shape
+{
+    // Abstract method
+    public abstract double Area();
+}
+
+// Regular class inheriting from the abstract class
+public class Rectangle : Shape
+{
+    public double Width { get; set; }
+    public double Height { get; set; }
+
+    // Implementation of the abstract method
+    public override double Area()
+    {
+        return Width * Height;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Abstract class cannot be instantiated directly
+        // Shape shape = new Shape(); // This will cause an error
+
+        // Regular class can be instantiated
+        Rectangle rectangle = new Rectangle();
+        rectangle.Width = 5;
+        rectangle.Height = 3;
+        Console.WriteLine($"Area of rectangle: {rectangle.Area()}"); // Output: 15
+    }
+}
+
+```
+
+<h4>In this example, Shape is an abstract class that contains an abstract method Area(). The Rectangle class inherits from Shape and implements the Area() method. You cannot create an instance of Shape directly, but you can create instances of Rectangle.</h4>
 </details>
+
+<details>
+<summary>What is an interface and what are its key differences from an abstract class?</summary>
+  <p>
+  An interface in C# is a reference type that defines a contract for other classes to implement. It contains only method signatures, properties, events, or indexers, without providing any implementation. Any class that implements an interface must provide concrete implementations for all members declared in that interface.</p>
+<p>
+  Here are the key differences between an interface and an abstract class:
+</p>
+
+**Implementation:**
+Abstract Class: Can contain both abstract and non-abstract (concrete) members. It can provide partial implementation of methods.
+Interface: Contains only method signatures, properties, events, or indexers, without any implementation.
+Inheritance:
+Abstract Class: Supports single inheritance. A class can inherit from only one abstract class.
+Interface: Supports multiple inheritance. A class can implement multiple interfaces.
+Members:
+Abstract Class: Can have fields, constructors, destructors, and defined methods.
+Interface: Can only have method signatures, properties, events, or indexers. No fields, constructors, or destructors are allowed.
+Accessibility:
+Abstract Class: Can have access modifiers (public, private, protected, etc.) for its members.
+Interface: All members are implicitly public and cannot have access modifiers (except for explicit interface implementations).
+Usage:
+Abstract Class: Used when a common base implementation is needed among derived classes or when some methods should have a default implementation.
+Interface: Used when you want to enforce a contract for implementing classes without providing any default implementation.
+  
+</details>
+
+<details>
+<summary>Що дає ключове слово «virtual»? Які члени класу можуть бути позначені цим модифікатором?</summary>
+</details>
+
+<details>
+<summary>Яка різниця між перевантаженням методу та перевизначенням методу?</summary>
+</details>
+
+<details>
+<summary>Що таке upcast і downcast?</summary>
+</details>
+
+<details>
+<summary>Що таке події та делегати? Яка основна різниця між ними? Як їх використовувати для реалізації зворотного виклику в C#?</summary>
+</details>
+
+### *Основні концепції C#*
 
 ## **Middle** 👱
 ## **Senior** 🧔
