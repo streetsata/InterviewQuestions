@@ -1,24 +1,5 @@
 # Interviewer's questions about C#, ASP.NET, Data Bases concept and DevOps
 
-Оцінка:
-- [ ] <input type="checkbox" id="rating1" onclick="handleCheckbox('rating1')"> 1
-- [ ] <input type="checkbox" id="rating2" onclick="handleCheckbox('rating2')"> 2
-- [ ] <input type="checkbox" id="rating3" onclick="handleCheckbox('rating3')"> 3
-- [ ] <input type="checkbox" id="rating4" onclick="handleCheckbox('rating4')"> 4
-- [ ] <input type="checkbox" id="rating5" onclick="handleCheckbox('rating5')"> 5
-
-<script>
-  function handleCheckbox(checkboxId) {
-    var checkbox = document.getElementById(checkboxId);
-    if (checkbox.checked) {
-      checkbox.checked = false;
-    } else {
-      checkbox.checked = true;
-    }
-  }
-</script>
-
-
 | Term  | Description |
 | ------------- | ------------- |
 | None | Has no or little understanding
@@ -34,8 +15,6 @@
 <details>
 <summary>What are the basic principles of OOP? How are they implemented in C#?</summary> 
 <br>
-
-
   
 <ul>
   <li>Encapsulation: Bundling data and methods that operate on the data into a single unit (class).</li>
