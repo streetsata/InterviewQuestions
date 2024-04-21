@@ -4,7 +4,7 @@
 
 ### *OOP concepts*
 
-<details open>
+<details>
 <summary>What are the basic principles of OOP? How are they implemented in C#?</summary>
 <br>
 <ul>
