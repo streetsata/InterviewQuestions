@@ -1,5 +1,4 @@
-# **Interview Questions** 
-Questions from the interviewer on the ASP.Net
+# Interviewer's questions about ASP.NET
 
 ## **Trainee/Junior** 👼
 
