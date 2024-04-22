@@ -603,7 +603,248 @@ In this example, `Publisher` declares an event `SomeEvent` of type `MyCallback`,
 
 </details>
 
-### *Основні концепції C#*
+### *Basic C# Concepts*
+
+<details>
+<summary>What is the difference between an array (T[]) and a list (List<T>)? What are collections and how are they used?</summary>
+
+
+**Difference between Array (T[]) and List (List<T>)**
+
+**Array (T[])**:
+
+-   Arrays in C# are fixed-size collections of elements of the same type.
+-   Once created, the size of an array cannot be changed.
+-   Arrays offer direct access to elements using indexers.
+-   They are more memory efficient than lists because they don't need extra memory to store their elements.
+-   Arrays are less flexible than lists, especially in terms of resizing and manipulation.
+
+**List<T>**:
+
+-   Lists in C# are dynamic-size collections of elements of the same type.
+-   Lists automatically resize themselves as needed when elements are added or removed.
+-   Lists provide methods to manipulate their elements, such as adding, removing, inserting, and sorting.
+-   They offer more flexibility and functionality compared to arrays.
+-   Lists are implemented as a wrapper around an array and use additional memory to store their elements.
+
+**Collections and How They Are Used**
+
+In C#, collections are objects that can hold multiple elements. They are used to store, organize, and manipulate data efficiently. Collections provide various data structures, each designed for specific purposes and requirements.
+
+Here are some commonly used collection types in C#:
+
+1.  **List<T>**: Dynamic-size list that provides methods for adding, removing, and accessing elements.
+    
+2.  **Dictionary<TKey, TValue>**: Key-value pair collection that provides fast lookup by key.
+    
+3.  **Queue<T>**: First-in-first-out (FIFO) collection used for storing and retrieving elements in the order they were added.
+    
+4.  **Stack<T>**: Last-in-first-out (LIFO) collection used for storing and retrieving elements in the reverse order of their addition.
+    
+5.  **HashSet<T>**: Unordered collection of unique elements with no duplicates.
+    
+6.  **LinkedList<T>**: Doubly linked list collection that allows efficient insertion and removal of elements at any position.
+    
+
+Collections are used in various scenarios:
+
+-   Storing and managing data in memory.
+-   Implementing algorithms and data structures.
+-   Passing data between methods or components.
+-   Working with collections of objects obtained from databases or external sources.
+-   Manipulating data in LINQ queries.
+
+Here's an example of using a list to store and manipulate data:
+
+```cs
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Creating a list of integers
+        List<int> numbers = new List<int>();
+
+        // Adding elements to the list
+        numbers.Add(10);
+        numbers.Add(20);
+        numbers.Add(30);
+
+        // Accessing elements by index
+        Console.WriteLine("First element: " + numbers[0]);
+
+        // Iterating through the list
+        Console.WriteLine("All elements:");
+        foreach (int number in numbers)
+        {
+            Console.WriteLine(number);
+        }
+
+        // Removing an element
+        numbers.Remove(20);
+
+        // Checking if an element exists
+        if (numbers.Contains(20))
+        {
+            Console.WriteLine("20 is still in the list.");
+        }
+        else
+        {
+            Console.WriteLine("20 is not in the list anymore.");
+        }
+    }
+}
+
+```
+
+In this example, we create a list of integers, add elements to it, access elements by index, iterate through the list, remove an element, and check if an element exists in the list. Lists provide flexibility and ease of use for managing collections of data.
+
+</details>
+
+<details>
+<summary>What is a hash table? What is a hash function? How are collisions handled in dictionaries?</summary>
+
+
+**Hash Table:**
+
+A hash table is a data structure that stores key-value pairs. It uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found. The key advantage of a hash table is its ability to perform lookups, insertions, and deletions in constant time on average, making it highly efficient for large datasets.
+
+**Hash Function:**
+
+A hash function is a mathematical function that takes an input (or "key") and produces a fixed-size string of characters, typically a hash code or hash value. The output of a hash function is used to index into a hash table or hash map.
+
+A good hash function should have the following properties:
+
+1.  **Deterministic**: For a given input, the hash function should always produce the same hash value.
+    
+2.  **Efficient**: The hash function should be computationally efficient.
+    
+3.  **Uniform Distribution**: The hash function should distribute the keys uniformly across the available hash table buckets to minimize collisions.
+    
+4.  **Minimal Collisions**: Collisions should be minimized, but they are practically unavoidable due to the pigeonhole principle.
+    
+
+**Handling Collisions in Dictionaries:**
+
+Collisions occur when two different keys produce the same hash value, which results in them being mapped to the same bucket in the hash table. There are several common techniques to handle collisions:
+
+1.  **Separate Chaining**:
+    
+    -   Each bucket in the hash table contains a linked list or other data structure (e.g., an array) to store multiple key-value pairs that hash to the same index.
+    -   When a collision occurs, the new key-value pair is added to the linked list at the corresponding bucket.
+2.  **Open Addressing**:
+    
+    -   In open addressing, collisions are resolved by finding an alternative location within the hash table.
+    -   Common open addressing strategies include linear probing (check the next bucket), quadratic probing (check buckets with quadratic increments), and double hashing (use a secondary hash function to calculate the next bucket).
+3.  **Robin Hood Hashing**:
+    
+    -   This is a variation of open addressing where items are stored based on how far they are from their "natural" position.
+    -   When inserting a new item, if the bucket is already occupied, it checks how far the existing item has traveled from its natural position. If the new item has traveled less, it swaps places with the existing item.
+4.  **Cuckoo Hashing**:
+    
+    -   In cuckoo hashing, each key is stored in one of two hash tables. When a collision occurs in one table, the key is moved to the other table.
+    -   If there's a cycle or the other table is full, the tables are resized and rehashed.
+
+Each collision resolution strategy has its advantages and disadvantages, and the choice depends on factors such as the expected number of collisions, memory requirements, and performance considerations.
+
+</details>
+
+<details>
+<summary>What is Boxing and Unboxing?</summary>
+
+**Boxing and Unboxing in C#**
+
+**Boxing:**
+
+Boxing is the process of converting a value type (e.g., int, double, struct) to an object reference type (e.g., System.Object). When you box a value type, the CLR allocates memory on the heap to store the value type's value, wraps it within an object, and returns a reference to that object.
+
+Here's an example of boxing:
+
+```cs
+int i = 42; // Value type
+object obj = i; // Boxing: int is boxed into an object
+```
+
+In this example, the value `42` is boxed into an object `obj`. Now, `obj` holds a reference to the boxed value on the heap.
+
+**Unboxing:**
+
+Unboxing is the opposite process of boxing. It involves converting an object reference type back to a value type. Unboxing extracts the value type from the boxed object.
+
+Here's an example of unboxing:
+
+```cs
+object obj = 42; // Boxed int
+int i = (int)obj; // Unboxing: Object is unboxed to int
+```
+
+
+In this example, the boxed value `42` is unboxed from the object `obj` and assigned to the variable `i`.
+
+**Performance Considerations:**
+
+Boxing and unboxing involve copying values between the stack and the heap, which can have performance implications, especially in performance-sensitive scenarios. Boxing creates additional memory allocations and introduces overhead, while unboxing involves type checking and casting.
+
+**Avoiding Boxing and Unboxing:**
+
+To avoid unnecessary boxing and unboxing, use generics and value types wherever possible. For example, instead of using `ArrayList` (which stores objects and leads to boxing), use `List<T>` with a specific type.
+
+```cs
+// Avoid boxing:
+ArrayList list = new ArrayList();
+list.Add(42); // Boxing occurs
+
+// Use generics to avoid boxing:
+List<int> list = new List<int>();
+list.Add(42); // No boxing occurs
+```
+
+Generics provide type safety and eliminate the need for boxing and unboxing in many cases, resulting in improved performance and reduced memory overhead.
+
+</details>
+
+<details>
+<summary>Які особливості використання запису (record) і запису-структури (record struct)?</summary>
+</details>
+
+<details>
+<summary>Що дає ключове слово «static»? Яка особливість статичних класів?</summary>
+</details>
+
+<details>
+<summary>Що дає ключове слово «sealed»?</summary>
+</details>
+
+<details>
+<summary>Яка різниця між типами значень і типами посилань? Коли який тип доцільно використовувати? Наведіть приклади неправильного використання типу посилання.</summary>
+</details>
+
+<details>
+<summary>У чому різниця між структурами та класами в C#?</summary>
+</details>
+
+<details>
+<summary>У чому різниця між стеком і купою (heap)?</summary>
+</details>
+
+<details>
+<summary>Що таке приведення типів? Яка різниця між явним і неявним приведенням типів?</summary>
+</details>
+
+<details>
+<summary>Як реалізувати патерн Singleton в C# та які його переваги й недоліки?</summary>
+</details>
+
+<details>
+<summary>Що таке LINQ-запити?</summary>
+</details>
+
+<details>
+<summary>Поясніть різницю між методами LINQ First vs FirstOrDefault vs Single vs SingleOrDefault.</summary>
+</details>
+
 ### *Обробка винятків та управління помилками*
 ### *Структура коду та синтаксис*
 ### *Принципи та шаблони проєктування програмного забезпечення*
